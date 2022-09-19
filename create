@@ -1,0 +1,146 @@
+create table school
+(student_name varchar(50)not null,
+student_email varchar(50)not null,
+adderss varchar(50),
+gender varchar(9),
+conatct number(15),
+city varchar(20),
+state varchar(20),
+country varchar(20)
+);
+
+
+
+insert into school
+(student_name,
+student_email,
+adderss,
+gender,
+conatct,
+city,
+state,
+country)
+values
+('kinjal',
+'kinjal@gmail.com',
+'tarsai',
+'female',
+8888888888,
+'rajkot',
+'gujrat',
+'india');
+
+insert into school
+(student_name,
+student_email,
+adderss,
+gender,
+conatct,
+city,
+state,
+country)
+values
+('khushi',
+'khushi@gmail.com',
+'jamnagar',
+'female',
+8888888888,
+'mumbai',
+'mp',
+'india');
+
+insert into school
+(student_name,
+student_email,
+adderss,
+gender,
+conatct,
+city,
+state,
+country)
+values
+('niv',
+'niv@gmail.com',
+'rajkot',
+'male',
+8888888888,
+'bhuj',
+'gujrat',
+'india');
+
+insert into school
+(student_name,
+student_email,
+adderss,
+gender,
+conatct,
+city,
+state,
+country)
+values
+('bhoomi',
+'bhoomi@gmail.com',
+'tarsai',
+'female',
+8888888888,
+'kachch',
+'gujrat',
+'india');
+
+insert into school
+(student_name,
+student_email,
+adderss,
+gender,
+conatct,
+city,
+state,
+country)
+values
+('nisha',
+'nisha@gmail.com',
+'tarsai',
+'female',
+8888888888,
+'rajkot',
+'gujrat',
+'india');
+
+insert into school
+(student_name,
+student_email,
+adderss,
+gender,
+conatct,
+city,
+state,
+country)
+values
+('krunal',
+'krunal@gmail.com',
+'tarsai',
+'male',
+8888888888,
+'pune',
+'mp',
+'india');
+
+
+select*from school;
+
+
+select student_name from school;
+
+
+select student_email from school;
+
+select adderss from school;
+
+select gender from school;
+
+select conatct from school;
+
+select city from school;
+
+select state from school;
+
