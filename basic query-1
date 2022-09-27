@@ -1,0 +1,515 @@
+SQL> create table stud(
+  2  studno number(4,0),
+  3  studname varchar2(10),
+  4  job varchar2(9),
+  5  mgr number(4,0),
+  6  hiredate date,
+  7  sal number(7,2),
+  8  comm number(7,2),
+  9  deptno number(2,0)
+ 10  );
+
+Table created.
+
+SQL> insert into stud values(7839, 'KING', 'PRESIDENT', null, to_date('17-11-1981','dd-
+> mm-yyyy'), 5000, null, 10);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7698, 'BLAKE', 'MANAGER', 7839, to_date('1-5-1981','dd-mm-
+> yyyy'), 2850, null, 30);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7782, 'CLARK', 'MANAGER', 7839, to_date('9-6-1981','dd-mm-
+> yyyy'), 2450, null, 10);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7566, 'JONES', 'MANAGER', 7839, to_date('2-4-1981','dd-mm-
+> yyyy'), 2975, null, 20);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7788, 'SCOTT', 'ANALYST', 7566, to_date('13-JUL-87','dd-mm-
+> rr') - 85, 3000, null, 20);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7902, 'FORD', 'ANALYST', 7566, to_date('3-12-1981','dd-mm-
+> yyyy'), 3000, null, 20);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7369, 'SMITH', 'CLERK', 7902, to_date('17-12-1980','dd-mm-
+> yyyy'), 800, null, 20);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7499, 'ALLEN', 'SALESMAN', 7698, to_date('20-2-1981','dd-
+> mm-yyyy'), 1600, 300, 30);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7521, 'WARD', 'SALESMAN', 7698, to_date('22-2-1981','dd-mm-
+> yyyy'), 1250, 500, 30);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7654, 'MARTIN', 'SALESMAN', 7698, to_date('28-9-1981','dd-
+> mm-yyyy'), 1250, 1400, 30);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7844, 'TURNER', 'SALESMAN', 7698, to_date('8-9-1981','dd-
+> mm-yyyy'), 1500, 0, 30);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7876, 'ADAMS', 'CLERK', 7788, to_date('13-JUL-87', 'dd-mm-
+> rr') - 51,1100, null, 20);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7900, 'JAMES', 'CLERK', 7698, to_date('3-12-1981','dd-mm-
+> yyyy'), 950, null, 30);
+
+1 row created.
+
+SQL> 
+SQL> insert into stud values(7934, 'MILLER', 'CLERK', 7782, to_date('23-1-1982','dd-mm-
+> yyyy'), 1300, null, 10);
+
+1 row created.
+
+SQL> select*from stud;
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7839 KING       PRESIDENT            17-NOV-81       5000
+        10
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450
+        10
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000
+        20
+
+      7902 FORD       ANALYST         7566 03-DEC-81       3000
+        20
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800
+        20
+
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500
+        30
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+
+14 rows selected.
+
+SQL> decribe stud;
+SP2-0734: unknown command beginning "decribe st..." - rest of line ignored.
+SQL> describe stud;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDNO                                             NUMBER(4)
+ STUDNAME                                           VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGR                                                NUMBER(4)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+SQL> select*from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+DEPT                           TABLE
+EMP                            TABLE
+BONUS                          TABLE
+SALGRADE                       TABLE
+EMP_D                          TABLE
+EMPLOYEE_DETAILS               TABLE
+EMPLOYEE_D                     TABLE
+CUSTOMERS                      TABLE
+CUSTOMERS2                     TABLE
+CUSTOMERS4                     TABLE
+CUSTOMER2                      TABLE
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+CUSTOMER1                      TABLE
+CUNSUMERS                      TABLE
+EMPLOYEES_DETAILS              TABLE
+EMP_DETAILS                    TABLE
+COMPANY                        TABLE
+SCHOOL                         TABLE
+STUD                           TABLE
+
+18 rows selected.
+
+SQL> select studno from stud;
+
+    STUDNO
+----------
+      7839
+      7698
+      7782
+      7566
+      7788
+      7902
+      7369
+      7499
+      7521
+      7654
+      7844
+
+    STUDNO
+----------
+      7876
+      7900
+      7934
+
+14 rows selected.
+
+SQL> select studno,jobfrom stud;
+select studno,jobfrom stud
+                         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select studno job from stud;
+
+       JOB
+----------
+      7839
+      7698
+      7782
+      7566
+      7788
+      7902
+      7369
+      7499
+      7521
+      7654
+      7844
+
+       JOB
+----------
+      7876
+      7900
+      7934
+
+14 rows selected.
+
+SQL> select all comm from stud;
+
+      COMM
+----------
+
+
+
+
+
+
+
+       300
+       500
+      1400
+         0
+
+      COMM
+----------
+
+
+
+
+14 rows selected.
+
+SQL> select studno mgr from stud;
+
+       MGR
+----------
+      7839
+      7698
+      7782
+      7566
+      7788
+      7902
+      7369
+      7499
+      7521
+      7654
+      7844
+
+       MGR
+----------
+      7876
+      7900
+      7934
+
+14 rows selected.
+
+SQL> select deptno from dept;
+
+    DEPTNO
+----------
+        10
+        20
+        30
+        40
+
+SQL> select studno studname;
+select studno studname
+                     *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select studno studname
+  2  
+SQL> select stuno,studname,job,mgr from stud;
+select stuno,studname,job,mgr from stud
+       *
+ERROR at line 1:
+ORA-00904: "STUNO": invalid identifier
+
+
+SQL> select studno,studname,job,mgr from stud;
+
+    STUDNO STUDNAME   JOB              MGR
+---------- ---------- --------- ----------
+      7839 KING       PRESIDENT
+      7698 BLAKE      MANAGER         7839
+      7782 CLARK      MANAGER         7839
+      7566 JONES      MANAGER         7839
+      7788 SCOTT      ANALYST         7566
+      7902 FORD       ANALYST         7566
+      7369 SMITH      CLERK           7902
+      7499 ALLEN      SALESMAN        7698
+      7521 WARD       SALESMAN        7698
+      7654 MARTIN     SALESMAN        7698
+      7844 TURNER     SALESMAN        7698
+
+    STUDNO STUDNAME   JOB              MGR
+---------- ---------- --------- ----------
+      7876 ADAMS      CLERK           7788
+      7900 JAMES      CLERK           7698
+      7934 MILLER     CLERK           7782
+
+14 rows selected.
+
+SQL> select studname,mgr from stud;
+
+STUDNAME          MGR
+---------- ----------
+KING
+BLAKE            7839
+CLARK            7839
+JONES            7839
+SCOTT            7566
+FORD             7566
+SMITH            7902
+ALLEN            7698
+WARD             7698
+MARTIN           7698
+TURNER           7698
+
+STUDNAME          MGR
+---------- ----------
+ADAMS            7788
+JAMES            7698
+MILLER           7782
+
+14 rows selected.
+
+SQL> select job,comm from stud;
+
+JOB             COMM
+--------- ----------
+PRESIDENT
+MANAGER
+MANAGER
+MANAGER
+ANALYST
+ANALYST
+CLERK
+SALESMAN         300
+SALESMAN         500
+SALESMAN        1400
+SALESMAN           0
+
+JOB             COMM
+--------- ----------
+CLERK
+CLERK
+CLERK
+
+14 rows selected.
+
+SQL> select studname,deptno from stud;
+
+STUDNAME       DEPTNO
+---------- ----------
+KING               10
+BLAKE              30
+CLARK              10
+JONES              20
+SCOTT              20
+FORD               20
+SMITH              20
+ALLEN              30
+WARD               30
+MARTIN             30
+TURNER             30
+
+STUDNAME       DEPTNO
+---------- ----------
+ADAMS              20
+JAMES              30
+MILLER             10
+
+14 rows selected.
+
+SQL> select deptno,studname,sal,job from stud;
+
+    DEPTNO STUDNAME          SAL JOB
+---------- ---------- ---------- ---------
+        10 KING             5000 PRESIDENT
+        30 BLAKE            2850 MANAGER
+        10 CLARK            2450 MANAGER
+        20 JONES            2975 MANAGER
+        20 SCOTT            3000 ANALYST
+        20 FORD             3000 ANALYST
+        20 SMITH             800 CLERK
+        30 ALLEN            1600 SALESMAN
+        30 WARD             1250 SALESMAN
+        30 MARTIN           1250 SALESMAN
+        30 TURNER           1500 SALESMAN
+
+    DEPTNO STUDNAME          SAL JOB
+---------- ---------- ---------- ---------
+        20 ADAMS            1100 CLERK
+        30 JAMES             950 CLERK
+        10 MILLER           1300 CLERK
+
+14 rows selected.
+
+SQL> select deptno,studnamefrom stud;
+select deptno,studnamefrom stud
+                              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select dname,deeptno from stud;
+select dname,deeptno from stud
+             *
+ERROR at line 1:
+ORA-00904: "DEEPTNO": invalid identifier
+
+
+SQL> select dname,deptno from stud;
+select dname,deptno from stud
+       *
+ERROR at line 1:
+ORA-00904: "DNAME": invalid identifier
+
+
+SQL>   select dname,deptno from dept;
+
+DNAME              DEPTNO
+-------------- ----------
+ACCOUNTING             10
+RESEARCH               20
+SALES                  30
+OPERATIONS             40
+
+SQL> select loc from dept;
+
+LOC
+-------------
+NEW YORK
+DALLAS
+CHICAGO
+BOSTON
+
+SQL> select dname,loc form dept;
+select dname,loc form dept
+                      *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> Select dname, loc from dept;
+
+DNAME          LOC
+-------------- -------------
+ACCOUNTING     NEW YORK
+RESEARCH       DALLAS
+SALES          CHICAGO
+OPERATIONS     BOSTON
+
+SQL> commit;
+
+Commit complete.
