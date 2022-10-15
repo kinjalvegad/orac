@@ -455,4 +455,403 @@ SQL> COMMIT;
 
 Commit complete.
 
-SQL> 
+SQL> SQL> SELECT * FROM STUD1;
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7839 KING       PRESIDENT            17-NOV-81       5000
+        10
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+
+9 rows selected.
+
+SQL> DESCRIBE STUD1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDNO                                             NUMBER(4)
+ STUDNAME                                           VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGR                                                NUMBER(4)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+SQL> SELECT * FROM STUD1 S,DEPT D WHERE D.NAME IN ('ACCOUNTING','RESEARCH') AND S.DEPTNO=D.DEPTNO OR
+DER BY S.DEPTNO ASC;
+SELECT * FROM STUD1 S,DEPT D WHERE D.NAME IN ('ACCOUNTING','RESEARCH') AND S.DEPTNO=D.DEPTNO ORDER B
+                                   *
+ERROR at line 1:
+ORA-00904: "D"."NAME": invalid identifier
+
+
+SQL> SELECT * FROM STUD1 S, DEPT D WHERE D.DNAME IN ('ACCOUNTING','RESEARCH') AND S.DEPTNO=D.DEPTNO 
+ORDER BY S.DEPTNO ASC;
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO     DEPTNO DNAME          LOC
+---------- ---------- -------------- -------------
+      7839 KING       PRESIDENT            17-NOV-81       5000
+        10         10 ACCOUNTING     NEW YORK
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10         10 ACCOUNTING     NEW YORK
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20         20 RESEARCH       DALLAS
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO     DEPTNO DNAME          LOC
+---------- ---------- -------------- -------------
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20         20 RESEARCH       DALLAS
+
+
+SQL> SELECT LOC FROM STUD1 S,DEPT D WHERE S.STUDNAME='SMITH' AND S.DEPTNO=D.DEPTNO;
+
+no rows selected
+
+SQL> SELECT LOC FROM STUD1 S, DEPT D WHERE S.STUDNAME='ADAMS' AND S.DEPTNO=D.DEPTNO;
+
+LOC
+-------------
+DALLAS
+
+SQL> SELECT * FROM STUD1 WHERE SAL>(SELECT SAL FROM  STUD1 WHERE STUDNAME='BLAKE');
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7839 KING       PRESIDENT            17-NOV-81       5000
+        10
+
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+
+SQL>  SELECT * FROM STUD1 WHERE 
+  2  
+SQL>  SELECT * FROM STUD1 WHERE 
+  2  
+SQL>  SELECT * FROM STUD1 WHERE 
+  2  
+SQL>  SELECT * FROM STUD1 WHERE 
+  2  
+SQL> SELECT * FROM STUD1 WHERE JOB=(SELECT JOB FROM STUD WHERE STUDNAME='ALLEN');
+
+no rows selected
+
+SQL> SELECT * FROM STUD1 WHERE JOB = (SELECT JOB FROM STUD1 WHERE STUDNAME='ALLEN');
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+
+SQL> SELECT * FROM STUD1 WHERE HIREDATE <(SELECT HIREDATE FROM STUD1 WHERE STUDNAME='KING');
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+
+SQL> SELECT * FROM STUD1 ORDER BY HIREDATE DESC;
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7839 KING       PRESIDENT            17-NOV-81       5000
+        10
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+
+9 rows selected.
+
+SQL> SELECT * FROM STUD1 ORDER BY HIREDATE ASC;
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7839 KING       PRESIDENT            17-NOV-81       5000
+        10
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+
+9 rows selected.
+
+SQL> SELECT DEPTNO,DNAME FROM DEPT WHERE DEPTNO>20;
+
+    DEPTNO DNAME
+---------- --------------
+        30 SALES
+        40 OPERATIONS
+
+SQL> SELECT * FROM STUD1 WHERE COMM>SAL;
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+
+SQL> SELECT * FROM STUD1 WHERE COMM<SAL;
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+
+SQL> SELECT * FROM STUD1 WHERE SAL>=500 AND SAL<=1500;
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+
+SQL> SELECT * FROM STUD1 WHERE SAL BETWEEN 500 AND 1500;
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+
+SQL> SELECT * FROM STUD1 WHERE MGR IN(7902,7566,7788);
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+
+SQL> SELECT * FROM STUD1 WHERE MGR BETWEEN 7788 AND 7902;
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+
+SQL> SELECT * FROM STUD1 WHERE STUDNAME LIKE 'S%';
+
+no rows selected
+
+SQL> SELECT * FROM STUD1 WHERE STUDNAME LIKE 'A%';
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+
+SQL> SELECT * FROM STUD1 WHERE STUDNAME='ADAMS';
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+
+SQL> COMMIT;
+
