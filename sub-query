@@ -378,4 +378,81 @@ SQL> COMMIT;
 
 Commit complete.
 
+SQL> SQL> SELECT * FROM STUD1;
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7839 KING       PRESIDENT            17-NOV-81       5000
+        10
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850
+        30
+
+      7566 JONES      MANAGER         7839 02-APR-81       2975
+        20
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300
+        30
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400
+        30
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0
+        30
+
+
+    STUDNO STUDNAME   JOB              MGR HIREDATE         SAL       COMM
+---------- ---------- --------- ---------- --------- ---------- ----------
+    DEPTNO
+----------
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100
+        20
+
+      7900 JAMES      CLERK           7698 03-DEC-81        950
+        30
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300
+        10
+
+
+9 rows selected.
+
+SQL> SELECT JOB,SUM(SAL),AVG(SAL) FROM STUD1 GROUP BY JOB HAVING JOB NOT IN ('SALESMAN','CLERK','MAN
+AGER');
+
+JOB         SUM(SAL)   AVG(SAL)
+--------- ---------- ----------
+PRESIDENT       5000       5000
+
+SQL> SELECT LOC FROM STUD1 E,DEPT D WHERE E.STUDNAME='SMITH' AND E.DEPTNO=D.DEPTNO;
+
+no rows selected
+
+SQL> SELECT LOC FROM STUD1 S,DEPT D WHERE S.SNAME='SMITH' AND E.DEPTNO=D.DEPTNO;
+SELECT LOC FROM STUD1 S,DEPT D WHERE S.SNAME='SMITH' AND E.DEPTNO=D.DEPTNO
+                                                         *
+ERROR at line 1:
+ORA-00904: "E"."DEPTNO": invalid identifier
+
+
+SQL> SELECT LOC FROM STUD1 S,DEPT D WHERE S.SNAME='SMITH' AND S.DEPTNO=D.DEPTNO;
+SELECT LOC FROM STUD1 S,DEPT D WHERE S.SNAME='SMITH' AND S.DEPTNO=D.DEPTNO
+                                     *
+ERROR at line 1:
+ORA-00904: "S"."SNAME": invalid identifier
+
+
+SQL> COMITT;
+SP2-0042: unknown command "COMITT" - rest of line ignored.
+SQL> COMMIT;
+
+Commit complete.
+
 SQL> 
